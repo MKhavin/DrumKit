@@ -32,13 +32,16 @@ function getAudioPath(value) {
 
 function buttonClicked() {
 
-    
+    buttonAnimation(this.textContent);
+
     let audio = new Audio(getAudioPath(this.textContent));
     audio.play();
 
 }
 
 function keyPressed(evt) {
+
+    buttonAnimation(evt.key);
 
     let audio = new Audio(getAudioPath(evt.key));
     audio.play();
@@ -51,6 +54,16 @@ function setButtonsEvent() {
     for (var i = 0; i < elements.length; i++) {
         elements[i].addEventListener("click", buttonClicked);
     }
+}
+
+function buttonAnimation(currentKey) {
+    let currentButton = document.querySelector("." + currentKey);
+
+    currentButton.classList.toggle("pressed");
+
+    setTimeout(function() {
+        currentButton.classList.toggle("pressed");
+    }, 100);
 }
 
 setButtonsEvent();
